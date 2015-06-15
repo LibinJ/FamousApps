@@ -1,10 +1,9 @@
 var DOMElement = require('famous/dom-renderables/DOMElement');
 var Node = require('famous/core/Node');
 
-function Child(mount) {
+function Section(mount) {
     // Extend Node
     Node.call(this);
-    console.log('menuChild');
     this.dom = new DOMElement(this, { 
 	    tagName: 'iframe',
 	    attributes: {
@@ -19,6 +18,6 @@ function Child(mount) {
 	});
 }
 
-Child.prototype = Object.create(Node.prototype);
+Section.prototype = Object.create(Node.prototype);
 
-module.exports = Child;
+module.exports = Section;
