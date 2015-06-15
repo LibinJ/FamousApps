@@ -1,0 +1,6 @@
+c/bundle.js
+node_modules
+npm-debug.log
+.DS_Store
+docs
+.ideas
