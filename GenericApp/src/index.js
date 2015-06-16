@@ -1,4 +1,4 @@
-var Menu = require('./menu/Menu');
+var HamburgerMenu = require('./hamburgerMenu/HamburgerMenu');
 var Page = require('./page/Page');
 var famous = require('famous');
 var FamousEngine = famous.core.FamousEngine;
@@ -6,4 +6,4 @@ var FamousEngine = famous.core.FamousEngine;
 FamousEngine.init();
 var scene = FamousEngine.createScene();
 var hamburgerMenu = scene.addChild(new HamburgerMenu());
-var page = scene.addChild(new Page());
+// var page = scene.addChild(new Page());

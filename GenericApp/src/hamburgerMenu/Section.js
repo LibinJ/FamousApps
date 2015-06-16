@@ -1,23 +1,56 @@
-var DOMElement = require('famous/dom-renderables/DOMElement');
-var Node = require('famous/core/Node');
+var famous = require('famous');
+var DOMElement = famous.domRenderables.DOMElement;
+var Node = famous.core.Node;
 
-function Section(mount) {
+var TitleProSize = .04;
+var LabelProSize = .06;
+
+function Section(title, labels, position) {
     // Extend Node
     Node.call(this);
-    this.dom = new DOMElement(this, { 
-	    tagName: 'iframe',
-	    attributes: {
-	    	width: '100%',
-	    	height: '100%',
-	    	src: 'http://www.youtube.com/embed/TvKymDP85JI?rel=0&autoplay=1',
-	    	frameborder: 0
-	    },
-	    properties: {
-            zIndex: 10
-        }
-	});
+    this.position=position;
+    makeTitle.call(this, title);
+	makeLabels.call(this, labels);
 }
 
 Section.prototype = Object.create(Node.prototype);
+
+function makeTitle(title) {
+	this.title = this.addChild();
+	this.title
+		.setAlign(0, this.position, 0)
+		.setProportionalSize(1, TitleProSize, 1);
+	new DOMElement(this.title, {
+		tagName: 'div1',
+		content: title,
+		properties: {
+			fontSize: TitleProSize*.8*innerHeight+'px',
+			textAlign: 'center',
+            backgroundColor: "hsl(120, 100%, 50%)"
+		}
+	});
+	this.position+=TitleProSize;
+}
+
+function makeLabels(ls, position) {
+	this.labels = [];
+	for (var i=0; i<ls.length; i++) {
+		var label = this.addChild()
+		label
+			.setAlign(0, this.position, 0)
+			.setProportionalSize(1, LabelProSize, 1);
+		this.labels.push(label);
+		new DOMElement(label, {
+			tagName: 'div2',
+			content: ls[i],
+			properties: {
+				fontSize: LabelProSize*.8*innerHeight+'px',
+				textAlign: 'center',
+	            backgroundColor: "hsl(270, 100%, 50%)"
+			}
+		});
+		this.position+=LabelProSize;
+	}
+}
 
 module.exports = Section;
