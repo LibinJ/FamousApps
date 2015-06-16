@@ -1,0 +1,15 @@
+{
+   sections: [{
+       id: 'Home',
+       tweetNumber: 50
+   }, {
+       id: 'Message',
+       tweetNumber: 50
+   }, {
+       id: 'Setting',
+       tweetNumber: 50
+   }, {
+       id: 'Me',
+       tweetNumber: 25
+   }]
+}
