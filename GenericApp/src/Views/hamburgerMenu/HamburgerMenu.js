@@ -1,6 +1,7 @@
 var famous = require('famous');
 var Node = famous.core.Node;
 var Section = require('./Section');
+var HamburgerMenuCollection = require('../../Models/HamburgerMenuCollection');
 
 var Titles = ['T1', 'T2', 'T3'];
 var Labels = [['L1', 'L2', 'L3'], ['L4', 'L5'], ['L6']];
@@ -8,6 +9,8 @@ var Labels = [['L1', 'L2', 'L3'], ['L4', 'L5'], ['L6']];
 function HamburgerMenu(mount) {
     // Extend Node
     Node.call(this);
+    window.menuCollection = this.menuCollection = new HamburgerMenuCollection();
+    this.menuCollection.fetch();
     this.setSizeMode('absolute', 'absolute', 'absolute')
         .setAbsoluteSize(.8*innerWidth, innerHeight);
     this.secPosition=0;
