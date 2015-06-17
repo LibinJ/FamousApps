@@ -3,10 +3,7 @@ var MenuItemModel = require('./MenuItemModel')
 
 var HamburgerMenuCollection = Backbone.Collection.extend({
 	model: MenuItemModel,
-	url: 'data/menu.json',
-	parse: function(res) {
-		console.log(res)
-	}
+	url: 'data/menu.json'
 });
 
 module.exports = HamburgerMenuCollection;

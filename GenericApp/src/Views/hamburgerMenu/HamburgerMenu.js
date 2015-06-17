@@ -14,7 +14,10 @@ function HamburgerMenu(mount) {
     this.setSizeMode('absolute', 'absolute', 'absolute')
         .setAbsoluteSize(.8*innerWidth, innerHeight);
     this.secPosition=0;
-    makeSections.apply(this, [Titles, Labels]);    
+    makeSections.apply(this, [Titles, Labels]);
+    this.menuCollection.on('all', function(eventType, menuItemModel, collection) {
+       console.log(eventType, menuItemModel, collection);
+    });
 }
 
 // Extend the prototype

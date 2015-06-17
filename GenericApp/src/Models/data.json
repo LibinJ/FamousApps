@@ -1,8 +1,0 @@
-[
-	{ content: "l1", section: "T1" },
-	{ content: "l2", section: "T1" },
-	{ content: "l3", section: "T1" },
-	{ content: "l4", section: "T2" },
-	{ content: "l5", section: "T2" },
-	{ content: "l6", section: "T3" }
-]
