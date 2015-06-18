@@ -5,16 +5,25 @@ var FooterButton = require('./FooterButton');
 var Align = require('famous/components/Align');
 var Image = require('./Image');
 
+var PhotoCollection = require('../../Models/PhotoCollection');
 var w = innerWidth;
 var h = innerHeight;
 
 function Section(i) {
     Node.call(this);
+    this.collection = PhotoCollection.load('jeff');
     this.imgs = createImages.call(this, i);
+    _debug.call(this);
 }
 
 
 Section.prototype = Object.create(Node.prototype);
+
+function _debug() {
+    if (app && app.debug) {
+        window.photoCollection = this.collection;
+    }
+}
 
 function createImages(id) {
     var result = [];

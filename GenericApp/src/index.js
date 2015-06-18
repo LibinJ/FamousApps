@@ -1,3 +1,6 @@
+window.app = {
+    debug: true
+}
 var HamburgerMenu = require('./Views/hamburgerMenu/HamburgerMenu');
 var Main = require('./Views/mainPage/Main');
 var famous = require('famous');
