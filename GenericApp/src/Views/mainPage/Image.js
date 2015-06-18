@@ -10,11 +10,10 @@ var h = innerHeight;
 function Image(options) {
     Node.call(this);
     this.model = options.model;
-    console.log(this.model);
     this.el = new DOMElement(this, {
         tagName: 'div'
     });
-    this.el.setContent('<img src=' + this.model.get('imageUrl') + ' height="' + (h-200) + '" width="' + w + '""><p>' + this.model.get('title') + '</p>' );
+    this.el.setContent('<img src=' + this.model.get('imageUrl') + ' height="' + (h-200) + '" width="' + w + '""><p class="textContent">' + this.model.get('title') + '</p>' );
 }
 
 

@@ -32,6 +32,14 @@ body {
     line-height: 75px;
 }
 
+.textContent {
+    font-family: 'Marko One', serif;
+    text-align: center;
+    color: black;
+    font-size: 20px;
+    line-height: 30px;
+}
+
 .off {
     color: #FFFFFF;
     background-color: #000000; /* Old browsers */

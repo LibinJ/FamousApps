@@ -41,9 +41,7 @@ function createImages(collection) {
     var result = [];
     var numberOfImgs = collection.length;
     var img;
-    console.log(numberOfImgs);
     for (var i = 0 ; i < numberOfImgs ; i++) {
-        console.log("before: " + i);
         img = this.addChild()
                     .setSizeMode('default', 'absolute')
                     .setAbsoluteSize(w, h-100)
@@ -51,7 +49,6 @@ function createImages(collection) {
                     .addChild(new Image({
                         model: collection.at(i)
                     }));
-        console.log("after: " + i);
         result.push(img);
     }
     return result;
