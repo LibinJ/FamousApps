@@ -46,7 +46,7 @@ function createImages(collection) {
         console.log("before: " + i);
         img = this.addChild()
                     .setSizeMode('default', 'absolute')
-                    .setAbsoluteSize(w, h-150)
+                    .setAbsoluteSize(w, h-100)
                     .setPosition(0, (h-150) * i)
                     .addChild(new Image({
                         model: collection.at(i)

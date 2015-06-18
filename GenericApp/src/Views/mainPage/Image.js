@@ -14,9 +14,7 @@ function Image(options) {
     this.el = new DOMElement(this, {
         tagName: 'div'
     });
-
-    this.el.setContent('<img src=' + this.model.get('imageUrl') + '><div>' + this.model.get('title') + '</div>' );
-    //.setAttribute('src', model.get('imageUrl'));
+    this.el.setContent('<img src=' + this.model.get('imageUrl') + ' height="' + (h-200) + '" width="' + w + '""><p>' + this.model.get('title') + '</p>' );
 }
 
 
