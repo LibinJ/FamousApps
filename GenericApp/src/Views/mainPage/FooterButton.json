@@ -1,15 +1,17 @@
 {
    sections: [{
        id: 'Home',
-       tweetNumber: 50
+       imgNumber: 4
    }, {
        id: 'Message',
-       tweetNumber: 50
+       imgNumber: 3
    }, {
        id: 'Setting',
-       tweetNumber: 50
+       imgNumber: 2
    }, {
        id: 'Me',
-       tweetNumber: 25
-   }]
+       imgNumber: 1
+   }],
+
+   images: ['Home.jpg', 'bear.JPG', 'sign.jpg', 'flower.jpg', 'festival.jpeg', 'lion.jpg', 'view.jpg']
 }

@@ -1,6 +1,9 @@
 var famous  = require('famous');
 var DOMElement = famous.domRenderables.DOMElement;
 var Node = famous.core.Node;
+var Align = famous.components.Align;
+var FooterButton = require('./FooterButton');
+var Section = require('./Section');
 
 var w = innerWidth;
 var h = innerHeight;
@@ -8,45 +11,55 @@ var h = innerHeight;
 function Content(mount) {
     // Extend Node
     Node.call(this);
-    this.makeContent();
+
+    this
+        .setDifferentialSize(0, -150, null)
+        .setPosition(0, 75);
+
+    this.el = new DOMElement(this).setProperty('overflow-y', 'scroll')
+                                  //.setProperty('overflow-x', 'hidden')
+                                  .setProperty('overflow-x', 'scroll')
+                                  .setProperty('background-color', '#888888');
+
+    this.currentSection = null;
+    this.sections = createSections.call(this);
 }
 
 Content.prototype = Object.create(Node.prototype);
 
-Content.prototype.makeContent = function () {
-	this.setSizeMode('absolute', 'absolute')
-        .setAbsoluteSize(w, h-150)
-        .setAlign(0.5, 0.5)
-    	.setMountPoint(0.5, 0.5);
-    this.el = new DOMElement(this, { 
-        tagName: 'div',
-        properties: {
-            backgroundColor: "#E8E8E8 ",
-            zIndex: 20
+Content.prototype.changeSection = function (to) {
+	FooterButton.sections.forEach(function (section) {
+        if (section.id === to) 
+            this.sections[section.id].align.set(0, 0, 0, {
+                duration: 500
+            });
+        else
+            this.sections[section.id].align.set(1, 0, 0, {
+                duration: 500
+            });
+    }.bind(this));
+
+    this.currentSection = to;
+};
+
+Content.prototype.onReceive = function onReceive (event, payload) {
+    if (event === 'changeSection') ;
+        this.changeSection(payload.to);
+};
+
+function createSections () {
+    var result = {};
+
+    // iterate over all the sections in our data
+    FooterButton.sections.forEach(function (section, i) {
+        var child = this.addChild();
+        result[section.id] = {
+            align: new Align(child),
+            section: child.addChild(new Section(i))
         }
-    });
-    this.textNode = this.addChild();
+    }.bind(this));
 
-    this.textNode
-   		.setSizeMode('absolute', 'absolute')
-    	.setAbsoluteSize(w, 50)
-   		.setAlign(0.5, 0.5)
-    	.setMountPoint(0.5, 0.5)
-    	.setOrigin(0.5, 0.5);
-
-   var textElement = new DOMElement(this.textNode, {
-   		classes: ['textContent'],
-    	tagName: 'div',
-    	content: "Hello"
-    });
-};
-
-Content.prototype.setText = function (text) {
-	var textElement = new DOMElement(this.textNode, {
-		classes: ['textContent'],
-    	tagName: 'div',
-    	content: text
-    });
-};
+    return result;
+}
 
 module.exports = Content;

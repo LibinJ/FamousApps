@@ -1,6 +1,7 @@
 var famous  = require('famous');
 var DOMElement = famous.domRenderables.DOMElement;
 var Node = famous.core.Node;
+var Align = famous.components.Align;
 
 var w = innerWidth;
 var h = innerHeight;
@@ -28,30 +29,28 @@ function makeEl(){
     });
 
     this.titleNode = this.addChild();
-
-    this.titleNode
-        .setSizeMode('absolute', 'absolute')
-        .setAbsoluteSize(w, 50)
-        .setAlign(0.5, 0.5)
-        .setMountPoint(0.5, 0.5)
-        .setOrigin(0.5, 0.5);
-
-   var titleElement = new DOMElement(this.titleNode, {
-        classes: ['titleContent'],
-        tagName: 'div',
-        content: "Main"
+    this.titleElement = new DOMElement(this.titleNode, {
+         classes: ['titleContent'],
+         tagName: 'div',
+         content: "Home"
     });
 }
 
 Header.prototype.onReceive = function onReceive (event, payload) {
-    console.log("receive");
-    console.log(payload.node);
-    console.log(event);
-    var textElement = new DOMElement(this.titleNode, {
-        classes: ['textContent'],
-        tagName: 'div',
-        content: "change"
-    });
+    if (event === 'changeSection') 
+        this.changeSection(payload.to);
+};
+
+Header.prototype.changeSection = function changeSection (to) {
+    var titleAlign = new Align(this.titleNode);
+    titleAlign.set(0, -1, 0, {
+        duration: 250,
+    }, function(){
+        this.titleElement.setContent(to);
+        titleAlign.set(0, 0, 0, {
+            duration: 250,
+        });
+    }.bind(this));
 };
 
 module.exports = Header;

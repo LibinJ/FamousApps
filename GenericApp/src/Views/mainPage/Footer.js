@@ -33,7 +33,6 @@ function makeEl(){
     	.setOrigin(0.5, 0.5);
     this.el = new DOMElement(this, { 
         properties: {
-            backgroundColor: "#484848",
             zIndex: 25
         }
     });

@@ -3,17 +3,30 @@ var Node = famous.core.Node;
 var Header = require('./Header');
 var Content = require('./Content');
 var Footer = require('./Footer');
+var FooterButton = require('./FooterButton');
 
 function Main(mount) {
     // Extend Node
     Node.call(this);
-    this.setSizeMode('absolute', 'absolute', 'absolute')
+
+    this.currentSection = FooterButton.sections[0].id;
+
+    this.setSizeMode('absolute', 'absolute')
         .setAbsoluteSize(innerWidth, innerHeight);
+    
     makePage.call(this);
 }
 
 // Extend the prototype
 Main.prototype = Object.create(Node.prototype);
+
+// Main.prototype.onMount = function(parent, id) {
+//    Node.prototype.onMount.call(this, parent, id);
+//    this.emit('changeSection',{
+//         from: null,
+//         to: this.currentSection
+//    });
+// };
 
 // make the child
 function makePage () {
@@ -25,18 +38,13 @@ function makePage () {
     this.addChild(this.content);
 }
 
-Main.prototype.onReceive = function onReceive (event, payload) {
-
+Main.prototype.onReceive = function onReceive(event, payload) {
     if (event === 'click') {
         var to = payload.node.getId();
-
-        // emit the changeSection event to the subtree
         this.emit('changeSection', {
             from: this.currentSection,
             to: to
         });
-
-        // set the current section
         this.currentSection = to;
     }
 };

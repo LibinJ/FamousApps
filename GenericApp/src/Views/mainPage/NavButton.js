@@ -9,13 +9,37 @@ function NavButton(id, status) {
     this.el = makeEl(this);
 
     this.id = id;
+
     this.el.setContent(id);
-        
+
     this.addUIEvent('click');
+    this.off();
 }
 
 NavButton.prototype = Object.create(Node.prototype);
 
+NavButton.prototype.onReceive = function onReceive (event, payload) {
+    if (event === 'changeSection') {
+        // swap on/off depend if this button points
+        // to the apps current section
+        if (payload.to === this.getId()) 
+            this.on();
+        else 
+            this.off();
+    }
+};
+
+NavButton.prototype.getId = function(){
+    return this.id;
+}
+
+NavButton.prototype.on = function on () {
+    this.el.removeClass('off').addClass('on');
+};
+
+NavButton.prototype.off = function off () {
+    this.el.removeClass('on').addClass('off');
+};
 
 function makeEl(node){
 	 return new DOMElement(node, {
