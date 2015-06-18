@@ -1,4 +1,4 @@
-var famous  = require('famous');
+var famous = require('famous');
 var DOMElement = famous.domRenderables.DOMElement;
 var Node = famous.core.Node;
 var FooterButton = require('./FooterButton');
@@ -9,9 +9,16 @@ var Image = require('./Image');
 var w = innerWidth;
 var h = innerHeight;
 
+<<<<<<< HEAD
 function Section(i) {
     console.log(i);
+=======
+function Section(category) {
+>>>>>>> origin/master
     Node.call(this);
+    console.log(category);
+    // this.category = 'Cat';
+    this.category = category;
     this.collection = PhotoCollection.load('jeff');
     // this.imgs = createImages.call(this, i);
     handleCollection.call(this);
@@ -42,15 +49,21 @@ function createImages(collection) {
     var result = [];
     var numberOfImgs = collection.length;
     var img;
-    for (var i = 0 ; i < numberOfImgs ; i++) {
-        img = this.addChild()
-                    .setSizeMode('default', 'absolute')
-                    .setAbsoluteSize(w, h-100)
-                    .setPosition(0, (h-150) * i)
-                    .addChild(new Image({
-                        model: collection.at(i)
-                    }));
-        result.push(img);
+    var positionIdx=0;
+    for (var i = 0; i < numberOfImgs; i++) {
+        var mdl = collection.at(i);
+        if (mdl.get('type')==this.category) {
+            console.log(this.category);
+            img = this.addChild()
+                .setSizeMode('default', 'absolute')
+                .setAbsoluteSize(w, h - 100)
+                .setPosition(0, (h - 150) * positionIdx)
+                .addChild(new Image({
+                    model: mdl
+                }));
+            positionIdx++;
+            result.push(img);   
+        }
     }
     return result;
 };
