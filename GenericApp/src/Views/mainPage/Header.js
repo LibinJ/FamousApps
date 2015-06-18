@@ -32,7 +32,7 @@ function makeEl(){
     this.titleElement = new DOMElement(this.titleNode, {
          classes: ['titleContent'],
          tagName: 'div',
-         content: "Cat"
+         content: "Home"
     });
 }
 
