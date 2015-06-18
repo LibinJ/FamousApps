@@ -29,7 +29,12 @@ function handleCollection() {
     //     console.log(collection);
     // });
     this.collection.on('sync', function(collection) {
-        createImages.call(this, collection);
+         collection.forEach(
+                function(model, i) {
+                    console.log(model.get('imageUrl'));
+                    console.log(model.get(i));
+                }
+         );
     }.bind(this));
 }
 
@@ -40,7 +45,7 @@ function _debug() {
 }
 
 
-function createImages(collection) {
+function createImages(collection, i) {
     var result = [];
     var img;
     var positionIdx=0;
