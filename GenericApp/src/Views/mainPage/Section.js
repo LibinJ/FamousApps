@@ -12,7 +12,7 @@ var h = innerHeight;
 function Section(category) {
     Node.call(this);
     console.log(category);
-    // this.category = 'Cat';
+    // this.category = 'Dog';
     this.category = category;
     this.collection = PhotoCollection.load('jeff');
     // this.imgs = createImages.call(this, i);
@@ -42,23 +42,23 @@ function _debug() {
 
 function createImages(collection) {
     var result = [];
-    var numberOfImgs = collection.length;
     var img;
     var positionIdx=0;
-    for (var i = 0; i < numberOfImgs; i++) {
-        var mdl = collection.at(i);
-        if (mdl.get('type')==this.category) {
-            console.log(this.category);
-            img = this.addChild()
-                .setSizeMode('default', 'absolute')
-                .setAbsoluteSize(w, h - 100)
-                .setPosition(0, (h - 150) * positionIdx)
-                .addChild(new Image({
-                    model: mdl
-                }));
-            positionIdx++;
-            result.push(img);   
-        }
+    var satisfiedImg = collection.filter(function(model) {
+        return model.get('type')==this.category;
+    }.bind(this));
+    // console.log(satisfiedImg);
+    for (var i = 0; i < satisfiedImg.length; i++) {
+        var mdl = satisfiedImg[i];
+        console.log(mdl);
+        img = this.addChild()
+            .setSizeMode('default', 'absolute')
+            .setAbsoluteSize(w, h - 100)
+            .setPosition(0, (h - 150) * i)
+            .addChild(new Image({
+                model: mdl
+            }));
+        result.push(img);   
     }
     return result;
 };
