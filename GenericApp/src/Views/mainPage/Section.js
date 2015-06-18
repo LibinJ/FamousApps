@@ -13,11 +13,25 @@ function Section(i) {
     Node.call(this);
     this.collection = PhotoCollection.load('jeff');
     this.imgs = createImages.call(this, i);
+    handleCollection.call(this);
     _debug.call(this);
 }
 
 
 Section.prototype = Object.create(Node.prototype);
+
+function handleCollection() {
+    // this.collection.on('all', function(collection) {
+    //     console.log(collection);
+    // });
+    this.collection.on('sync', function(collection) {
+        collection.forEach(
+            function(model) {
+                console.log(model.get('imageUrl'));
+            }
+        );
+    });
+}
 
 function _debug() {
     if (app && app.debug) {
