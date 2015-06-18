@@ -1,16 +1,16 @@
 {
    sections: [{
-       id: 'Home',
-       imgNumber: 4
+       id: 'Cat',
+       imgNumber: 10
    }, {
-       id: 'Message',
-       imgNumber: 3
+       id: 'Dog',
+       imgNumber: 10
    }, {
-       id: 'Setting',
-       imgNumber: 2
+       id: 'Fish',
+       imgNumber: 10
    }, {
-       id: 'Me',
-       imgNumber: 1
+       id: 'Monkey',
+       imgNumber: 10
    }],
 
    images: ['Home.jpg', 'bear.JPG', 'sign.jpg', 'flower.jpg', 'festival.jpeg', 'lion.jpg', 'view.jpg']
