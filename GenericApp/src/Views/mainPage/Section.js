@@ -10,6 +10,7 @@ var w = innerWidth;
 var h = innerHeight;
 
 function Section(i) {
+    console.log(i);
     Node.call(this);
     this.collection = PhotoCollection.load('jeff');
     // this.imgs = createImages.call(this, i);

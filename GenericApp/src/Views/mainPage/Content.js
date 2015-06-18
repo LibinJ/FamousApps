@@ -54,7 +54,7 @@ function createSections () {
         var child = this.addChild();
         result[section.id] = {
             align: new Align(child),
-            section: child.addChild(new Section(i))
+            section: child.addChild(new Section(section.id))
         }
     }.bind(this));
 
