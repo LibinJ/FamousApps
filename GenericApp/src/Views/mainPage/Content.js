@@ -49,7 +49,6 @@ Content.prototype.onReceive = function onReceive (event, payload) {
 function createSections () {
     var result = {};
 
-    // iterate over all the sections in our data
     FooterButton.sections.forEach(function (section, i) {
         var child = this.addChild();
         result[section.id] = {
