@@ -3,34 +3,40 @@ var Node = famous.core.Node;
 var Section = require('./Section');
 var HamburgerMenuCollection = require('../../Models/HamburgerMenuCollection');
 
-var Titles = ['T1', 'T2', 'T3'];
-var Labels = [['L1', 'L2', 'L3'], ['L4', 'L5'], ['L6']];
-
 function HamburgerMenu(mount) {
     // Extend Node
     Node.call(this);
-    window.menuCollection = this.menuCollection = new HamburgerMenuCollection();
+    this.menuCollection = new HamburgerMenuCollection();
     this.menuCollection.fetch();
     this.setSizeMode('absolute', 'absolute', 'absolute')
-        .setAbsoluteSize(.8*innerWidth, innerHeight);
-    this.secPosition=0;
-    makeSections.apply(this, [Titles, Labels]);
-    this.menuCollection.on('all', function(eventType, menuItemModel, collection) {
-       console.log(eventType, menuItemModel, collection);
-    });
+        .setAbsoluteSize(.8 * innerWidth, innerHeight);
+    this.secPosition = 0;
+    // makeSections.apply(this, [Titles, Labels]);
+    // this.menuCollection.on('all', function(eventType, menuItemModel, collection) {
+    //    console.log(eventType, menuItemModel, collection);
+    // });
+    this.sections = [];
+    this.menuCollection.on('sync', function(collection) {
+        collection.forEach(
+            function(model) {
+                makeSection.call(this, model);
+            }.bind(this)
+        );
+    }.bind(this));
 }
 
 // Extend the prototype
 HamburgerMenu.prototype = Object.create(Node.prototype);
 
 // make the child
-function makeSections (titles, labels) {
-    this.sections = [];
-    for (var i=0; i<titles.length; i++) {
-        var section = this.addChild(new Section(titles[i], labels[i], this.secPosition));
-        this.sections.push(section);
-        this.secPosition=section.position;
+function makeSection(model) {
+    var createSec = false;
+    if (this.sections.length == 0 || this.sections[this.sections.length - 1] != model.get('section')) {
+        createSec = true;
+        this.sections.push(model.get('section'));
     }
+    var section = this.addChild(new Section(model.get('section'), model.get('content'), this.secPosition, createSec));
+    this.secPosition = section.position;
 }
 
 module.exports = HamburgerMenu;

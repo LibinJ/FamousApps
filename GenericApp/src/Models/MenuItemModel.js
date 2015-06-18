@@ -1,7 +1,7 @@
 var Backbone = require('backbone');
 
 var MenuItemModel = Backbone.Model.extend({
-	default: {
+	defaults: {
 		content: 'c1',
 		section: 's1'
 	}
