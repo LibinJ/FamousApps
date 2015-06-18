@@ -11,8 +11,9 @@ var h = innerHeight;
 
 function Section(category) {
     Node.call(this);
-    this.category = 'Cat';
-    // this.category = category;
+    console.log(category);
+    // this.category = 'Cat';
+    this.category = category;
     this.collection = PhotoCollection.load('jeff');
     // this.imgs = createImages.call(this, i);
     handleCollection.call(this);
@@ -43,16 +44,19 @@ function createImages(collection) {
     var result = [];
     var numberOfImgs = collection.length;
     var img;
+    var positionIdx=0;
     for (var i = 0; i < numberOfImgs; i++) {
         var mdl = collection.at(i);
         if (mdl.get('type')==this.category) {
+            console.log(this.category);
             img = this.addChild()
                 .setSizeMode('default', 'absolute')
                 .setAbsoluteSize(w, h - 100)
-                .setPosition(0, (h - 150) * i)
+                .setPosition(0, (h - 150) * positionIdx)
                 .addChild(new Image({
                     model: mdl
                 }));
+            positionIdx++;
             result.push(img);   
         }
     }
