@@ -9,12 +9,7 @@ var Image = require('./Image');
 var w = innerWidth;
 var h = innerHeight;
 
-<<<<<<< HEAD
-function Section(i) {
-    console.log(i);
-=======
 function Section(category) {
->>>>>>> origin/master
     Node.call(this);
     console.log(category);
     // this.category = 'Cat';
