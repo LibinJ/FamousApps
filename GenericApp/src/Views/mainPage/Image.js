@@ -7,12 +7,16 @@ var Align = require('famous/components/Align');
 var w = innerWidth;
 var h = innerHeight;
 
-function Image() {
+function Image(options) {
     Node.call(this);
+    this.model = options.model;
+    console.log(this.model);
+    this.el = new DOMElement(this, {
+        tagName: 'div'
+    });
 
-    var contentImageEl = new DOMElement(this, {
-        tagName: 'img'
-    }).setAttribute('src', 'imgs/' + getRandomImage());
+    this.el.setContent('<img src=' + this.model.get('imageUrl') + '><div>' + this.model.get('title') + '</div>' );
+    //.setAttribute('src', model.get('imageUrl'));
 }
 
 
