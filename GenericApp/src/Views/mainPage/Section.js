@@ -8,6 +8,8 @@ var Image = require('./Image');
 
 var w = innerWidth;
 var h = innerHeight;
+var i = 0;
+var imageModelArray = [];
 
 function Section(category) {
     Node.call(this);
@@ -31,8 +33,15 @@ function handleCollection() {
     this.collection.once('sync', function(collection) {
         createImages.call(this, collection);
         this.collection.on('add', function(model) {
-            console.log(model);
-        })
+            if(model.get('type')==this.category)
+                addImages.call(this, model);
+        }.bind(this));
+        this.collection.on('remove', function(model){
+            if(model.get('type')==this.category){
+                console.log("remove: ");
+                removeImage(model);
+            }
+        }.bind(this));
     }.bind(this));
 }
 
@@ -42,18 +51,17 @@ function _debug() {
     }
 }
 
-
 function createImages(collection) {
-    var result = [];
+    //var result = [];
     var img;
     var positionIdx=0;
     var satisfiedImg = collection.filter(function(model) {
         return model.get('type')==this.category;
     }.bind(this));
     // console.log(satisfiedImg);
-    for (var i = 0; i < satisfiedImg.length; i++) {
+    for (i = 0; i < satisfiedImg.length; i++) {
         var mdl = satisfiedImg[i];
-        console.log(mdl);
+        //console.log(mdl);
         img = this.addChild()
             .setSizeMode('default', 'absolute')
             .setAbsoluteSize(w, h - 100)
@@ -61,9 +69,28 @@ function createImages(collection) {
             .addChild(new Image({
                 model: mdl
             }));
-        result.push(img);   
+        imageModelArray.push(mdl);   
     }
-    return result;
+    //return result;
 };
+
+function addImages(mdl){
+    i++;
+    var newimage = this.addChild()
+        .setSizeMode('default', 'absolute')
+        .setAbsoluteSize(w, h - 100)
+        .setPosition(0, (h - 150) * i)
+        .addChild(new Image({
+             model: mdl
+         }));
+};
+
+function removeImage(mdl){
+    for(var j = 0; j < imageModelArray.length; j++){
+        if(mdl.get('imageUrl') == imageModelArray[j].get('imageUrl')){
+            console.log("one");
+        }
+    }
+}
 
 module.exports = Section;
