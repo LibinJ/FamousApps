@@ -38,8 +38,7 @@ function handleCollection() {
         }.bind(this));
         this.collection.on('remove', function(model){
             if(model.get('type')==this.category){
-                console.log("remove: ");
-                removeImage(model);
+                removeImage.call(this, model);
             }
         }.bind(this));
     }.bind(this));
@@ -48,6 +47,7 @@ function handleCollection() {
 function _debug() {
     if (app && app.debug) {
         window.photoCollection = this.collection;
+        window.imageModelArray = imageModelArray;
     }
 }
 
@@ -83,14 +83,25 @@ function addImages(mdl){
         .addChild(new Image({
              model: mdl
          }));
+    imageModelArray.push(mdl); 
 };
 
 function removeImage(mdl){
+    var idx=0;
     for(var j = 0; j < imageModelArray.length; j++){
         if(mdl.get('imageUrl') == imageModelArray[j].get('imageUrl')){
-            console.log("one");
+            idx=j
+        } else if (imageModelArray[j].get('type')==this.category) {
+            var img = this.addChild()
+                .setSizeMode('default', 'absolute')
+                .setAbsoluteSize(w, h - 100)
+                .setPosition(0, (h - 150) * i)
+                .addChild(new Image({
+                    model: imageModelArray[j]
+                }));
         }
     }
+    imageModelArray.splice(idx, 1);
 }
 
 module.exports = Section;
