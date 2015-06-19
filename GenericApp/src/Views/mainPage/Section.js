@@ -28,8 +28,11 @@ function handleCollection() {
     // this.collection.on('all', function(collection) {
     //     console.log(collection);
     // });
-    this.collection.on('sync', function(collection) {
+    this.collection.once('sync', function(collection) {
         createImages.call(this, collection);
+        this.collection.on('add', function(model) {
+            console.log(model);
+        })
     }.bind(this));
 }
 
