@@ -9,7 +9,6 @@ var Image = require('./Image');
 var w = innerWidth;
 var h = innerHeight;
 var i = 0;
-var imageModelArray = [];
 
 function Section(category) {
     Node.call(this);
@@ -20,6 +19,8 @@ function Section(category) {
     // this.imgs = createImages.call(this, i);
     handleCollection.call(this);
     _debug.call(this);
+    this.imageModelArray = [];
+    this.imageNodeArray = [];
 
 }
 
@@ -47,7 +48,7 @@ function handleCollection() {
 function _debug() {
     if (app && app.debug) {
         window.photoCollection = this.collection;
-        window.imageModelArray = imageModelArray;
+        window.imageModelArray = this.imageModelArray;
     }
 }
 
@@ -69,39 +70,33 @@ function createImages(collection) {
             .addChild(new Image({
                 model: mdl
             }));
-        imageModelArray.push(mdl);   
+        this.imageModelArray.push(mdl);
+        console.log(this.imageModelArray);
+        this.imageNodeArray.push(img);   
     }
     //return result;
 };
 
 function addImages(mdl){
     i++;
-    var newimage = this.addChild()
+    var newImage = this.addChild()
         .setSizeMode('default', 'absolute')
         .setAbsoluteSize(w, h - 100)
         .setPosition(0, (h - 150) * i)
         .addChild(new Image({
              model: mdl
          }));
-    imageModelArray.push(mdl); 
+    this.imageModelArray.push(mdl); 
+    this.imageNodeArray.push(newImage);
 };
 
 function removeImage(mdl){
-    var idx=0;
-    for(var j = 0; j < imageModelArray.length; j++){
-        if(mdl.get('imageUrl') == imageModelArray[j].get('imageUrl')){
-            idx=j
-        } else if (imageModelArray[j].get('type')==this.category) {
-            var img = this.addChild()
-                .setSizeMode('default', 'absolute')
-                .setAbsoluteSize(w, h - 100)
-                .setPosition(0, (h - 150) * i)
-                .addChild(new Image({
-                    model: imageModelArray[j]
-                }));
-        }
+    var parent = this.imageNodeArray[0].getParent();
+    for (var i=0; i<this.imageNodeArray.length; i++) {
+        parent.removeChild(this.imageNodeArray[i]);
     }
-    imageModelArray.splice(idx, 1);
+    this.imageNodeArray=[];
+    console.log(this.imageNodeArray);
 }
 
 module.exports = Section;
