@@ -11,7 +11,8 @@ function ImageItem(options) {
     Node.call(this);
     this.model = options.model;
     this.el = new DOMElement(this, {
-        tagName: 'div'
+        tagName: 'div',
+        classes: ['image-item']
     });
     render.call(this);
     handleModel.call(this);
@@ -30,6 +31,7 @@ function handleModel() {
 }
 
 function render() {
+    console.log(this.model.toJSON())
     this.el.setContent('<img src=' + this.model.get('imageUrl') + ' height="' + (h-200) + '" width="' + w + '""><p class="textContent">' + this.model.get('title') + '</p>' );
 }
 

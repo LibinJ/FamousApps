@@ -21,9 +21,10 @@ function makeEl(){
         .setAlign(0.5, 75/(2*h))
     	.setMountPoint(0.5, 0.5)
     	.setOrigin(0.5, 0.5);
-    this.el = new DOMElement(this, { 
+    this.el = new DOMElement(this, {
+        classes: ["header"],
         properties: {
-            backgroundColor: "#484848",
+            backgroundColor: "green",
             zIndex: 25
         }
     });
