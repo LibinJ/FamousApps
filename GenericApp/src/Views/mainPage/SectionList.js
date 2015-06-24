@@ -24,7 +24,9 @@ function SectionList(category) {
 SectionList.prototype = Object.create(Node.prototype);
 
 function render() {
-
+	this.collection.each(function(ImageModel) {
+		addImageItem.call(this, ImageModel);
+	}.bind(this));
 }
 
 function handleCollection() {
@@ -37,8 +39,8 @@ function handleCollection() {
         }.bind(this));
         this.collection.on('remove', function(model) {
             if(model.get('type')==this.category) {
-                console.log('remove', model)
-                model.destroy();
+                // console.log('remove', model)
+                removeImage.call(this, model);
             }
         }.bind(this));
     }.bind(this));
@@ -50,33 +52,22 @@ function _debug() {
     }
 }
 
-function createImages(collection) {
-    //var result = [];
-    var img;
-    var positionIdx=0;
-    var satisfiedImg = collection.filter(function(model) {
-        return model.get('type')==this.category;
-    }.bind(this));
-    // console.log(satisfiedImg);
-    for (var i = 0; i < satisfiedImg.length; i++) {
-        var mdl = satisfiedImg[i];
-        //console.log(mdl);
-        img = this.addChild()
-            .setSizeMode('default', 'absolute')
-            .setAbsoluteSize(w, h - 100)
-            .setPosition(0, (h - 150) * i)
-            .addChild(new ImageItem({
-                model: mdl
-            }));
-    }
-    //return result;
-};
+function removeImage(ImageModel) {
+	var index = getIndex.call(this, ImageModel);
+	var len = this.filteredImages.length;
+	ImageModel.destroy();
 
-function addImageItem(ImageModel){
-    this.filteredImages = this.collection.where({
+}
+
+function getIndex(ImageModel) {
+	this.filteredImages = this.collection.where({
         type: this.category
     });
-    var index = this.filteredImages.indexOf(ImageModel);
+    return this.filteredImages.indexOf(ImageModel);
+}
+
+function addImageItem(ImageModel){
+	var index = getIndex.call(this, ImageModel);
     if (index>=0) {
         var newImage = this.addChild()
             .setSizeMode('default', 'absolute')
