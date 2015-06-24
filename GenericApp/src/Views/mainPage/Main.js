@@ -21,7 +21,6 @@ function Main(mount) {
 Main.prototype = Object.create(Node.prototype);
 
 Main.prototype.onMount = function(parent, id) {
-   Node.prototype.onMount.call(this, parent, id);
    this.emit('changeSection',{
         from: null,
         to: this.currentSection
