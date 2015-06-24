@@ -13,7 +13,6 @@ function NavButton(id, status) {
     this.el.setContent(id);
 
     this.addUIEvent('click');
-    this.off();
 }
 
 NavButton.prototype = Object.create(Node.prototype);
