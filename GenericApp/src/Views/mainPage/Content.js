@@ -3,7 +3,7 @@ var DOMElement = famous.domRenderables.DOMElement;
 var Node = famous.core.Node;
 var Align = famous.components.Align;
 var FooterButton = require('./FooterButton');
-var Section = require('./Section');
+var SectionList = require('./SectionList');
 
 var w = innerWidth;
 var h = innerHeight;
@@ -53,7 +53,7 @@ function createSections () {
         var child = this.addChild();
         result[section.id] = {
             align: new Align(child),
-            section: child.addChild(new Section(section.id))
+            section: child.addChild(new SectionList(section.id))
         }
     }.bind(this));
 
