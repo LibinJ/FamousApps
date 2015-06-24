@@ -10,6 +10,11 @@ var h = innerHeight;
 function ImageItem(options) {
     Node.call(this);
     this.model = options.model;
+    this.parent = options.parent;
+    this.index = options.index;
+    this.parent.setSizeMode('default', 'absolute')
+            .setAbsoluteSize(innerWidth, innerHeight - 100)
+            .setPosition(0, (innerHeight - 150) * this.index);
     this.el = new DOMElement(this, {
         tagName: 'div',
         classes: ['image-item']
@@ -23,11 +28,18 @@ ImageItem.prototype = Object.create(Node.prototype);
 
 function handleModel() {
     this.model.on('destroy', function(){
-
-        var parent = this.getParent();
-        parent.removeChild(this);
-        console.log('destroy', parent, this);
+        this.el.setContent('');
+        this.parent.removeChild(this);
     }.bind(this));
+    this.model.on('checkPosition', function(arg) {
+        if (arg.idx!=this.index)
+            moveUp.call(this);
+    }.bind(this));
+}
+
+function moveUp() {
+    this.index--;
+    this.parent.setPosition(0, (innerHeight - 150) * this.index);
 }
 
 function render() {

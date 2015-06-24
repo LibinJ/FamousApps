@@ -37,9 +37,8 @@ function handleCollection() {
             if(model.get('type')==this.category)
                 addImageItem.call(this, model);
         }.bind(this));
-        this.collection.on('remove', function(model) {
+        this.collection.on('remove', function(model, a, b) {
             if(model.get('type')==this.category) {
-                // console.log('remove', model)
                 removeImage.call(this, model);
             }
         }.bind(this));
@@ -53,10 +52,16 @@ function _debug() {
 }
 
 function removeImage(ImageModel) {
-	var index = getIndex.call(this, ImageModel);
-	var len = this.filteredImages.length;
+	// console.log(ImageModel, this.collection);
 	ImageModel.destroy();
-
+	this.filteredImages.forEach(function(model){
+		var newIdx = getIndex.call(this, model);
+		if (newIdx!=-1) {
+			model.trigger('checkPosition', {
+				idx: newIdx
+			});
+		}
+	}.bind(this));
 }
 
 function getIndex(ImageModel) {
@@ -69,12 +74,11 @@ function getIndex(ImageModel) {
 function addImageItem(ImageModel){
 	var index = getIndex.call(this, ImageModel);
     if (index>=0) {
-        var newImage = this.addChild()
-            .setSizeMode('default', 'absolute')
-            .setAbsoluteSize(w, h - 100)
-            .setPosition(0, (h - 150) * index)
-            .addChild(new ImageItem({
-                model: ImageModel
+        var imgParent = this.addChild();
+        imgParent.addChild(new ImageItem({
+                model: ImageModel,
+                parent: imgParent,
+                index: index
             }));
     }
 };
