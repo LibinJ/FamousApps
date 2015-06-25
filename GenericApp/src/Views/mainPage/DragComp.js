@@ -2,7 +2,7 @@ var famous  = require('famous');
 var GestureHandler = famous.components.GestureHandler;
 var Align = famous.components.Align;
 
-function DragComp (node) {
+function DragComp (node, option) {
 	this.node = node;
 	var childrenArray = node.getChildren();
 	var gestures = [];
@@ -28,6 +28,9 @@ function DragComp (node) {
                     else if(e.centerVelocity.x  < 0){
                         node.setPosition(0, 0, 0);
                     }
+                    console.log(node.content.sections.Cat.section);
+                    // node.content.sections.Cat.section.handleCollection();
+                    // });
                     break;
             }
         });

@@ -8,6 +8,6 @@ var FamousEngine = famous.core.FamousEngine;
 
 FamousEngine.init();
 var scene = FamousEngine.createScene();
-//var hamburgerMenu = scene.addChild(new HamburgerMenu());
+var hamburgerMenu = scene.addChild(new HamburgerMenu());
 var page = scene.addChild(new Main());
 //var test = scene.addChild(new Test());

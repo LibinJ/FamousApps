@@ -9,12 +9,8 @@ function HamburgerMenu(mount) {
     this.menuCollection = new HamburgerMenuCollection();
     this.menuCollection.fetch();
     this.setSizeMode('absolute', 'absolute', 'absolute')
-        .setAbsoluteSize(.8 * innerWidth, innerHeight);
+        .setAbsoluteSize(2/3 * innerWidth, innerHeight);
     this.secPosition = 0;
-    // makeSections.apply(this, [Titles, Labels]);
-    // this.menuCollection.on('all', function(eventType, menuItemModel, collection) {
-    //    console.log(eventType, menuItemModel, collection);
-    // });
     this.sections = [];
     this.menuCollection.on('sync', function(collection) {
         collection.forEach(
@@ -23,6 +19,7 @@ function HamburgerMenu(mount) {
             }.bind(this)
         );
     }.bind(this));
+    this.setPosition(0, 0, -10);
 }
 
 // Extend the prototype

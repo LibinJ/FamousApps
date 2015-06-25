@@ -26,7 +26,7 @@ function render() {
 	}.bind(this));
 }
 
-function handleCollection() {
+SectionList.prototype.handleCollection = function handleCollection() {
     this.collection.once('sync', function(collection) {
         render.call(this);
         this.collection.on('add', function(model) {

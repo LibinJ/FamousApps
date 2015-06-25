@@ -45,7 +45,6 @@ function moveUp() {
 }
 
 function render() {
-    console.log(this.model.toJSON())
     this.el.setContent('<img src=' + this.model.get('imageUrl') + ' height="' + (h-200) + '" width="' + w + '""><p class="textContent">' + this.model.get('title') + '</p>' );
     addDeleteButton.call(this);
 }

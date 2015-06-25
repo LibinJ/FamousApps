@@ -4,6 +4,7 @@ var Header = require('./Header');
 var Content = require('./Content');
 var Footer = require('./Footer');
 var FooterButton = require('./FooterButton');
+var DragComp = require('./DragComp');
 
 function Main(mount) {
     // Extend Node
@@ -13,7 +14,7 @@ function Main(mount) {
 
     this.setSizeMode('absolute', 'absolute')
         .setAbsoluteSize(innerWidth, innerHeight);
-    
+
     makePage.call(this);
 }
 
@@ -21,20 +22,21 @@ function Main(mount) {
 Main.prototype = Object.create(Node.prototype);
 
 Main.prototype.onMount = function(parent, id) {
-   this.emit('changeSection',{
+    this.emit('changeSection', {
         from: null,
         to: this.currentSection
-   });
+    });
 };
 
 // make the child
-function makePage () {
-	this.header = new Header();
+function makePage() {
+    this.header = new Header();
     this.addChild(this.header);
     this.footer = new Footer();
     this.addChild(this.footer);
     this.content = new Content();
     this.addChild(this.content);
+    var dragComp = new DragComp(this);
 }
 
 Main.prototype.onReceive = function onReceive(event, payload) {

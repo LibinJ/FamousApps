@@ -5,8 +5,6 @@ var Node = famous.core.Node;
 function DeleteButton(options) {
     // Extend Node
     Node.call(this);
-    
-    console.log("remove button");
 
     this.setSizeMode('default', 'absolute')
             .setAbsoluteSize(innerWidth/20, innerHeight/20)

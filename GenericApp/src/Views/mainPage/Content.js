@@ -18,7 +18,8 @@ function Content(mount) {
 
     this.el = new DOMElement(this).setProperty('overflow-y', 'scroll')
                                   .setProperty('overflow-x', 'hidden')
-                                  .setProperty('background-color', '#888888');
+                                  .setProperty('background-color', '#888888')
+                                  .setProperty('zInedx', '25');
 
     this.currentSection = null;
     this.sections = createSections.call(this);
