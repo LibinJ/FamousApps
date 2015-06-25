@@ -5,6 +5,8 @@ var Node = famous.core.Node;
 var TitleProSize = .04;
 var LabelProSize = .06;
 
+// currently worked on by Charlie and Daniel
+
 function Section(title, labels, position, createSec) {
     // Extend Node
     Node.call(this);
