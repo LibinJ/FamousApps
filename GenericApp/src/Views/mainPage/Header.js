@@ -2,6 +2,7 @@ var famous  = require('famous');
 var DOMElement = famous.domRenderables.DOMElement;
 var Node = famous.core.Node;
 var Align = famous.components.Align;
+var theme = require('../../Theme');
 
 var w = innerWidth;
 var h = innerHeight;
@@ -17,7 +18,7 @@ Header.prototype = Object.create(Node.prototype);
 
 function makeEl(){ 
     this.setSizeMode('absolute', 'absolute')
-        .setAbsoluteSize(w, 75)
+        .setAbsoluteSize(w, theme.headerHeight)
         .setAlign(0.5, 75/(2*h))
     	.setMountPoint(0.5, 0.5)
     	.setOrigin(0.5, 0.5);
