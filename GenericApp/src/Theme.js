@@ -1,5 +1,9 @@
 var loadTheme = _.memoize(function() {
+    var headerHeight = 75;
+    var footerHeight = 75;
     return {
+        headerHeight: headerHeight,
+        footerHeight: footerHeight,
         backgoundColor1: 'rgb(50,56,77)',
         backgoundColor2: 'rgb(0,0,0)',
         textColor: 'rgb(223,242,153)',
@@ -10,7 +14,7 @@ var loadTheme = _.memoize(function() {
         black: 'black',
         imageItem: {
             width: innerWidth,
-            height: 100
+            height: innerHeight - footerHeight - headerHeight
         }
     };
 });

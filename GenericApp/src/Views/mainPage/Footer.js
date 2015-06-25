@@ -3,6 +3,7 @@ var DOMElement = famous.domRenderables.DOMElement;
 var Node = famous.core.Node;
 var FooterButton = require('./FooterButton');
 var NavButton = require('./NavButton');
+var theme = require('../../Theme');
 
 var numSections = FooterButton.sections.length;
 var w = innerWidth;
@@ -27,7 +28,7 @@ Footer.prototype = Object.create(Node.prototype);
 
 function makeEl(){ 
     this.setSizeMode('absolute', 'absolute')
-        .setAbsoluteSize(w, 75)
+        .setAbsoluteSize(w, theme.footerHeight)
         .setAlign(0.5, 1-75/(2*h))
     	.setMountPoint(0.5, 0.5)
     	.setOrigin(0.5, 0.5);

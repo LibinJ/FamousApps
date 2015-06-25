@@ -4,6 +4,7 @@ var Node = famous.core.Node;
 var FooterButton = require('./FooterButton');
 var DeleteButton = require('./DeleteButton');
 var Align = famous.components.Align;
+var theme = require('../../Theme');
 
 var w = innerWidth;
 var h = innerHeight;
@@ -14,8 +15,10 @@ function ImageItem(options) {
     this.parent = options.parent;
     this.index = options.index;
     this.parent.setSizeMode('default', 'absolute')
-            .setAbsoluteSize(innerWidth, innerHeight - 100)
-            .setPosition(0, (innerHeight - 150) * this.index);
+            .setAbsoluteSize(innerWidth, theme.imageItem.height)
+            .setPosition(0, theme.imageItem.height * this.index);
+    console.log("height: " + theme.imageItem.height);
+    console.log("innerWidth: " + innerHeight);
     this.el = new DOMElement(this, {
         tagName: 'div',
         classes: ['image-item']
@@ -24,7 +27,6 @@ function ImageItem(options) {
 
     handleModel.call(this);
 }
-
 
 ImageItem.prototype = Object.create(Node.prototype);
 
@@ -41,12 +43,13 @@ function handleModel() {
 
 function moveUp() {
     this.index--;
-    this.parent.setPosition(0, (innerHeight - 150) * this.index);
+    this.parent.setPosition(0, theme.imageItem.height * this.index);
 }
 
 function render() {
     console.log(this.model.toJSON())
-    this.el.setContent('<img src=' + this.model.get('imageUrl') + ' height="' + (h-200) + '" width="' + w + '""><p class="textContent">' + this.model.get('title') + '</p>' );
+    //this.el.setContent('<img src=' + this.model.get('imageUrl') + ' height="' + (h-200) + '" width="' + w + '""><p class="textContent">' + this.model.get('title') + '</p>' );
+    this.el.setContent('<img src=' + this.model.get('imageUrl') + '><p class="textContent">' + this.model.get('title') + '</p>' );
     addDeleteButton.call(this);
 }
 
