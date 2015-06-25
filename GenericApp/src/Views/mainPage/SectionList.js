@@ -3,7 +3,7 @@ var famous = require('famous');
 var DOMElement = famous.domRenderables.DOMElement;
 var Node = famous.core.Node;
 var FooterButton = require('./FooterButton');
-var Align = require('famous/components/Align');
+var Align = famous.components.Align;
 var PhotoCollection = require('../../Models/PhotoCollection');
 var ImageItem = require('./ImageItem');
 
@@ -12,14 +12,11 @@ var h = innerHeight;
 
 function SectionList(category) {
     Node.call(this);
-    console.log(category);
-    // this.category = 'Dog';
     this.category = category;
     this.collection = PhotoCollection.load('jeff');
     handleCollection.call(this);
     _debug.call(this);
 }
-
 
 SectionList.prototype = Object.create(Node.prototype);
 
@@ -31,17 +28,20 @@ function render() {
 
 function handleCollection() {
     this.collection.once('sync', function(collection) {
-//        createImages.call(this, collection);
         render.call(this);
-        this.collection.on('add', function(model) {
-            if(model.get('type')==this.category)
-                addImageItem.call(this, model);
+        this.collection.on('all', function(model) {
+            console.log();
         }.bind(this));
-        this.collection.on('remove', function(model, a, b) {
-            if(model.get('type')==this.category) {
-                removeImage.call(this, model);
-            }
-        }.bind(this));
+
+        // this.collection.on('add', function(model) {
+        //     if(model.get('type')==this.category)
+        //         addImageItem.call(this, model);
+        // }.bind(this));
+        // this.collection.on('remove', function(model, a, b) {
+        //     if(model.get('type')==this.category) {
+        //         removeImage.call(this, model);
+        //     }
+        // }.bind(this));
     }.bind(this));
 }
 
@@ -52,7 +52,6 @@ function _debug() {
 }
 
 function removeImage(ImageModel) {
-	// console.log(ImageModel, this.collection);
 	ImageModel.destroy();
 	this.filteredImages.forEach(function(model){
 		var newIdx = getIndex.call(this, model);

@@ -2,7 +2,8 @@ var famous  = require('famous');
 var DOMElement = famous.domRenderables.DOMElement;
 var Node = famous.core.Node;
 var FooterButton = require('./FooterButton');
-var Align = require('famous/components/Align');
+var DeleteButton = require('./DeleteButton');
+var Align = famous.components.Align;
 
 var w = innerWidth;
 var h = innerHeight;
@@ -20,6 +21,7 @@ function ImageItem(options) {
         classes: ['image-item']
     });
     render.call(this);
+
     handleModel.call(this);
 }
 
@@ -45,6 +47,11 @@ function moveUp() {
 function render() {
     console.log(this.model.toJSON())
     this.el.setContent('<img src=' + this.model.get('imageUrl') + ' height="' + (h-200) + '" width="' + w + '""><p class="textContent">' + this.model.get('title') + '</p>' );
+    addDeleteButton.call(this);
+}
+
+function addDeleteButton(){ 
+    this.addChild(new DeleteButton());
 }
 
 module.exports = ImageItem;
