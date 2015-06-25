@@ -29,19 +29,15 @@ function render() {
 function handleCollection() {
     this.collection.once('sync', function(collection) {
         render.call(this);
-        this.collection.on('all', function(model) {
-            console.log();
+        this.collection.on('add', function(model) {
+            if(model.get('type')==this.category)
+                addImageItem.call(this, model);
         }.bind(this));
-
-        // this.collection.on('add', function(model) {
-        //     if(model.get('type')==this.category)
-        //         addImageItem.call(this, model);
-        // }.bind(this));
-        // this.collection.on('remove', function(model, a, b) {
-        //     if(model.get('type')==this.category) {
-        //         removeImage.call(this, model);
-        //     }
-        // }.bind(this));
+        this.collection.on('remove', function(model, a, b) {
+            if(model.get('type')==this.category) {
+                removeImage.call(this, model);
+            }
+        }.bind(this));
     }.bind(this));
 }
 
