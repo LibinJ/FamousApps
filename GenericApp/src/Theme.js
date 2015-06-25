@@ -4,9 +4,9 @@ var loadTheme = _.memoize(function() {
     return {
         headerHeight: headerHeight,
         footerHeight: footerHeight,
-        contentBackgroundColor: '#888888',
+        contentBackgroundColor: 'White',
         deleteButtonColor: '#000000',
-        headerBackgroundColor: 'green',
+        headerBackgroundColor: '#517fa4',
         backgoundColor1: 'rgb(50,56,77)',
         backgoundColor2: 'rgb(0,0,0)',
         textColor: 'rgb(223,242,153)',
@@ -17,7 +17,7 @@ var loadTheme = _.memoize(function() {
         black: 'black',
         imageItem: {
             width: innerWidth,
-            height: (innerHeight - footerHeight - headerHeight)/2
+            height: (innerHeight - footerHeight - headerHeight)
         },
         NavButton:{
             lineHeight: '100px',
