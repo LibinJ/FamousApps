@@ -26,8 +26,19 @@
 
         <!-- BackboneFire -->
         <script src="https://cdn.firebase.com/libs/backbonefire/0.5.1/backbonefire.js"></script>
+           
     </head>
+
     <body>
         <script src="bundle.js"></script>
+
+        <script type="text/template" id="image-item-template">
+            <div>
+                <img class="image-item-image" src="<%- imageUrl %>">
+                <p class="image-item-title"><%- title %></p>
+                <p class="image-item-subtitle"><%- subtitle %></p>
+            </div>
+        </script>
+
     </body>
 </html>

@@ -23,8 +23,8 @@ function ImageItem(options) {
         tagName: 'div',
         classes: ['image-item']
     });
+    this.imageTemplate = _.template($('#image-item-template').html());
     render.call(this);
-
     handleModel.call(this);
 }
 
@@ -47,10 +47,14 @@ function moveUp() {
 }
 
 function render() {
-    console.log(this.model.toJSON())
+    console.log("json: "+this.model.toJSON());
+    console.log("temp: " + this.imageTemplate);
+    console.log("imagetemp: " + _.template($('#image-item-template').html()));
+
     //this.el.setContent('<img src=' + this.model.get('imageUrl') + ' height="' + (h-200) + '" width="' + w + '""><p class="textContent">' + this.model.get('title') + '</p>' );
-    this.el.setContent('<img src=' + this.model.get('imageUrl') + '><p class="textContent">' + this.model.get('title') + '</p>' );
-    addDeleteButton.call(this);
+   // this.el.setContent('<img src=' + this.model.get('imageUrl') + '><p class="textContent">' + this.model.get('title') + '</p>' );
+     this.el.setContent(this.imageTemplate(this.model.toJSON()));
+    // addDeleteButton.call(this);
 }
 
 function addDeleteButton(){ 
