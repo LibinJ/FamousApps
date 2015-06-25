@@ -4,6 +4,7 @@ var Node = famous.core.Node;
 var Align = famous.components.Align;
 var FooterButton = require('./FooterButton');
 var SectionList = require('./SectionList');
+var theme = require('../../Theme');
 
 var w = innerWidth;
 var h = innerHeight;
@@ -18,7 +19,7 @@ function Content(mount) {
 
     this.el = new DOMElement(this).setProperty('overflow-y', 'scroll')
                                   .setProperty('overflow-x', 'hidden')
-                                  .setProperty('background-color', '#888888')
+                                  .setProperty('background-color', theme.contentBackgroundColor)
                                   .setProperty('zInedx', '25');
 
     this.currentSection = null;
