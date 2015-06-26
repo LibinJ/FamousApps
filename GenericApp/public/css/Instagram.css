@@ -27,7 +27,7 @@ body {
 
 @font-face {
     font-family: 'Billabong'; /*a name to be used later*/
-    src: url(../assets/font/Billabong.ttf);
+    src: url('../assets/font/Billabong.ttf');
 }
 
 
@@ -41,7 +41,7 @@ body {
 }
 
 .textContent {
-    font-family: 'Marko One', serif;
+    font-family: 'Billabong', 'Marko One', serif;
     text-align: center;
     color: white;
     font-size: 20px;
