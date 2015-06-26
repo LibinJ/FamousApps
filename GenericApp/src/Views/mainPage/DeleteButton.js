@@ -1,6 +1,7 @@
 var famous  = require('famous');
 var DOMElement = famous.domRenderables.DOMElement;
 var Node = famous.core.Node;
+var theme = require('../../Theme');
 
 function DeleteButton(options) {
     // Extend Node
@@ -17,10 +18,8 @@ function DeleteButton(options) {
         tagName: 'div',
         content: 'X',
         properties: {
-            color: "#000",
-            backgroundColor: "#FFF",
-            opacity: 0.5,
-            zIndex: 40
+            backgroundColor: theme.deleteButtonColor,
+            zIndex: 10
         }
     });
 

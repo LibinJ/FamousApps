@@ -1,6 +1,7 @@
 var famous  = require('famous');
 var DOMElement = famous.domRenderables.DOMElement;
 var Node = famous.core.Node;
+var theme = require('../../Theme');
 
 function NavButton(id, status) {
     // Extend Node
@@ -46,9 +47,9 @@ function makeEl(node){
 	 return new DOMElement(node, {
         properties: {
             textAlign: 'center',
-            lineHeight: '100px',
-            fontSize: '18px',
-            color: 'White',
+            lineHeight: theme.NavButton.lineHeight,
+            fontSize: theme.NavButton.fontSize,
+            color: theme.NavButton.color,
             zIndex: 30,
             cursor: 'pointer'
         }

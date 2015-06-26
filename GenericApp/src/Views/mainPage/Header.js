@@ -25,7 +25,8 @@ function makeEl(){
     this.el = new DOMElement(this, {
         classes: ["header"],
         properties: {
-            backgroundColor: "green",
+            backgroundColor: theme.headerBackgroundColor,
+            //position: "relative",
             zIndex: 25
         }
     });
