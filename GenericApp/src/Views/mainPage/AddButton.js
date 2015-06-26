@@ -3,21 +3,20 @@ var DOMElement = famous.domRenderables.DOMElement;
 var Node = famous.core.Node;
 var theme = require('../../Theme');
 
-function DeleteButton(options) {
+function AddButton(mount) {
     // Extend Node
     Node.call(this);
 
     this.setSizeMode('absolute', 'absolute')
-            .setAbsoluteSize(theme.DeleteButton.width, theme.DeleteButton.height)
-            .setPosition(innerWidth-theme.DeleteButton.width, 0);
+            .setAbsoluteSize(theme.AddButton.width, theme.AddButton.height)
+            .setPosition(innerWidth-innerWidth/10, 0);
 
     this.el = new DOMElement(this, {
-        classes: ['delete-button'],
+        classes: ['add-button'],
         tagName: 'div',
-        content: 'X',
+        content: '+',
         properties: {
-            backgroundColor: theme.deleteButtonColor,
-            opacity: 0.5,
+            backgroundColor: theme.headerBackgroundColor,
             zIndex: 10
         }
     });
@@ -25,9 +24,9 @@ function DeleteButton(options) {
     this.addUIEvent('click');
 }
 
-DeleteButton.prototype = Object.create(Node.prototype);
+AddButton.prototype = Object.create(Node.prototype);
 
-DeleteButton.prototype.onReceive = function onReceive(event, payload){
+AddButton.prototype.onReceive = function onReceive(event, payload){
     // console.log("this method got called")
     if (event === 'click') {
         console.log(event);        
@@ -35,4 +34,4 @@ DeleteButton.prototype.onReceive = function onReceive(event, payload){
     };
 }
 
-module.exports = DeleteButton;
+module.exports = AddButton;

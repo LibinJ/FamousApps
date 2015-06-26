@@ -44,7 +44,7 @@ Content.prototype.changeSection = function (to) {
 };
 
 Content.prototype.onReceive = function onReceive (event, payload) {
-    if (event === 'changeSection') ;
+    if (event === 'changeSection')
         this.changeSection(payload.to);
 };
 

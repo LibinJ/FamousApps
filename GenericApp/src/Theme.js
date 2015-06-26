@@ -19,8 +19,16 @@ var loadTheme = _.memoize(function() {
             width: innerWidth,
             height: (innerHeight - footerHeight - headerHeight)/3
         },
-
         NavButton:{
+            lineHeight: '100px',
+            fontSize: '18px',
+            color: 'White'
+        },
+        DeleteButton:{
+            width: innerWidth/20,
+            height: innerWidth/20
+        },
+        AddButton:{
             lineHeight: '100px',
             fontSize: '18px',
             color: 'White'

@@ -47,6 +47,11 @@ body {
 
 }
 
+.add-button{
+    color: white;
+    font-size: 40px;
+}
+
 .image-item-div {
     height: 90%;
     width: 94%;
