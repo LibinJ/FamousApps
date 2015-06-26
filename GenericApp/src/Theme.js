@@ -29,9 +29,8 @@ var loadTheme = _.memoize(function() {
             height: innerWidth/20
         },
         AddButton:{
-            lineHeight: '100px',
-            fontSize: '18px',
-            color: 'White'
+            width: innerWidth/20,
+            height: innerWidth/20
         }
     };
 });
