@@ -55,13 +55,15 @@ body {
 }
 
 .fill-div {
-    width: 50%;
-    height: 80%;
-    top: 10%;
+    width: 100%;
+    height: 100%;
+/*    width: 200px;
+    height: 150px;*/
+/*    top: 10%;
     left: 5%;
     display: block;
     position: relative;
-    overflow: hidden;
+    overflow: hidden;*/
 }
 
 .fill-div img {
@@ -69,19 +71,21 @@ body {
     top: 0;
     left: 0;
     width: 100%;
+    color: black;
 }
-
+/*
 .text-div {
     position: absolute;
     left: 50%;
-}
+    top: 0%;
+}*/
 
 .image-item img.image-item-image{
-/*    width: 50%; 
-    height: 60%;
+/*    width: 80%; 
+    height: 100%;
     position: absolute;*/
 
-    width: 50%;
+    width: 30%;
     height: 80%;
     top: 10%;
     left: 5%;
@@ -91,14 +95,14 @@ body {
 }
 
 .image-item p.image-item-title{
-     width: 50%; 
-     height: 20%;
+     width: 100%; 
+     height: 10%;
      text-align: left;
      font-size: 20px;
      font-family: "Arial";
      position: absolute;
      color: #517fa4;
-     top: 10%;
+     top: 0%;
      left: 50%;
 }
 
@@ -113,7 +117,7 @@ body {
     word-break: break-all;
     word-wrap: break-word;*/
     position: absolute;
-    top: 20%;
+    top: 15%;
     left: 50%;
 }
 
