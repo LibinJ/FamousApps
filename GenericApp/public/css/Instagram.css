@@ -27,6 +27,7 @@ body {
 
 @font-face {
     font-family: 'Billabong'; /*a name to be used later*/
+    src: url(../assets/font/Billabong.ttf);
 }
 
 
