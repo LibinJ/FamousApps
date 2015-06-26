@@ -55,23 +55,23 @@ body {
 }
 
 .fill-div {
-    width: 100%;
+    width: 80%;
     height: 100%;
 /*    width: 200px;
     height: 150px;*/
 /*    top: 10%;
-    left: 5%;
-    display: block;
-    position: relative;
-    overflow: hidden;*/
+    left: 5%;*/
+/*    display: block;
+*/    position: relative;
+    overflow: hidden;
 }
 
 .fill-div img {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 10%;
+    left: 5%;
+    height: 100%;
     width: 100%;
-    color: black;
 }
 /*
 .text-div {
@@ -85,10 +85,10 @@ body {
     height: 100%;
     position: absolute;*/
 
-    width: 30%;
-    height: 80%;
-    top: 10%;
-    left: 5%;
+    width: 50%;
+    height: 100%;
+/*    top: 10%;
+    left: 5%;*/
     display: block;
     position: relative;
     overflow: hidden;
