@@ -26,7 +26,6 @@ function makeEl(){
         classes: ["header"],
         properties: {
             backgroundColor: theme.headerBackgroundColor,
-            //position: "relative",
             zIndex: 25
         }
     });
