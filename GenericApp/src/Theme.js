@@ -17,7 +17,7 @@ var loadTheme = _.memoize(function() {
         black: 'black',
         imageItem: {
             width: innerWidth,
-            height: (innerHeight - footerHeight - headerHeight)
+            height: (innerHeight - footerHeight - headerHeight)/2
         },
         NavButton:{
             lineHeight: '100px',
