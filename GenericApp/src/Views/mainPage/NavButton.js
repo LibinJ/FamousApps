@@ -6,13 +6,10 @@ var theme = require('../../Theme');
 function NavButton(id, status) {
     // Extend Node
     Node.call(this);
-    
     this.el = makeEl(this);
-
     this.id = id;
-
     this.el.setContent(id);
-
+    this.type = 'NavButton';
     this.addUIEvent('click');
 }
 
@@ -26,8 +23,6 @@ NavButton.prototype.onReceive = function onReceive (event, payload) {
             this.on();
         else 
             this.off();
-    } else if (event === 'click' ) {
-        this.emit('navButtonClick');
     }
 };
 

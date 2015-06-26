@@ -10,6 +10,7 @@ function DeleteButton(options) {
     this.setSizeMode('absolute', 'absolute')
             .setAbsoluteSize(theme.DeleteButton.width, theme.DeleteButton.height)
             .setPosition(innerWidth-theme.DeleteButton.width, 0);
+    this.type = 'DeleteButton';
 
     this.el = new DOMElement(this, {
         classes: ['delete-button'],
@@ -28,11 +29,12 @@ function DeleteButton(options) {
 DeleteButton.prototype = Object.create(Node.prototype);
 
 DeleteButton.prototype.onReceive = function onReceive(event, payload){
-    // console.log("this method got called")
-    if (event === 'click') {
-        console.log(event);        
-        console.log(payload);
-    };
+    if (event == 'click' && payload.node.type == 'DeleteButton') {
+        var imageItem=this.getParent();
+        var model=imageItem.model;
+        var collection=imageItem.model.collection;
+        collection.remove(model);
+    }
 }
 
 module.exports = DeleteButton;

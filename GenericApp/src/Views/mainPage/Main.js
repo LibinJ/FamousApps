@@ -5,6 +5,7 @@ var Content = require('./Content');
 var Footer = require('./Footer');
 var FooterButton = require('./FooterButton');
 var DragComp = require('./DragComp');
+var NavButton = require('./NavButton');
 
 function Main(mount) {
     // Extend Node
@@ -40,9 +41,8 @@ function makePage() {
 }
 
 Main.prototype.onReceive = function onReceive(event, payload) {
-    console.log(payload.node);
-    if (event === 'click' && typeof payload.node === NavButton) {
-        console.log("this ran");
+    // console.log(event, payload);        // payload.node instanceof NavButton
+    if (event == 'click' && payload.node.type == 'NavButton') {
         var to = payload.node.getId();
         this.emit('changeSection', {
             from: this.currentSection,
