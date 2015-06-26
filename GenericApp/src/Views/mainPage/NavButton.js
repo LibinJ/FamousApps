@@ -25,6 +25,8 @@ NavButton.prototype.onReceive = function onReceive (event, payload) {
             this.on();
         else 
             this.off();
+    } else if (event === 'click' ) {
+        this.emit('navButtonClick');
     }
 };
 

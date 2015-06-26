@@ -17,8 +17,8 @@ function ImageItem(options) {
     this.parent.setSizeMode('default', 'absolute')
             .setAbsoluteSize(innerWidth, theme.imageItem.height)
             .setPosition(0, theme.imageItem.height * this.index);
-    console.log("height: " + theme.imageItem.height);
-    console.log("innerWidth: " + innerHeight);
+    // console.log("height: " + theme.imageItem.height);
+    // console.log("innerWidth: " + innerHeight);
     this.el = new DOMElement(this, {
         tagName: 'div',
         classes: ['image-item']
@@ -47,14 +47,14 @@ function moveUp() {
 }
 
 function render() {
-    console.log("json: "+this.model.toJSON());
-    console.log("temp: " + this.imageTemplate);
-    console.log("imagetemp: " + _.template($('#image-item-template').html()));
+    // console.log("json: "+this.model.toJSON());
+    // console.log("temp: " + this.imageTemplate);
+    // console.log("imagetemp: " + _.template($('#image-item-template').html()));
 
     //this.el.setContent('<img src=' + this.model.get('imageUrl') + ' height="' + (h-200) + '" width="' + w + '""><p class="textContent">' + this.model.get('title') + '</p>' );
    // this.el.setContent('<img src=' + this.model.get('imageUrl') + '><p class="textContent">' + this.model.get('title') + '</p>' );
      this.el.setContent(this.imageTemplate(this.model.toJSON()));
-    // addDeleteButton.call(this);
+    addDeleteButton.call(this);
 }
 
 function addDeleteButton(){ 

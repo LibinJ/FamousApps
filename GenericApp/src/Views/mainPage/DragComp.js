@@ -6,6 +6,7 @@ function DragComp (node, option) {
 	this.node = node;
 	var childrenArray = node.getChildren();
 	var gestures = [];
+    return;
 	for(var i = 0; i < childrenArray.length; i++){ 
         if(childrenArray[i] == null)
             continue;
@@ -28,7 +29,7 @@ function DragComp (node, option) {
                     else if(e.centerVelocity.x  < 0){
                         node.setPosition(0, 0, 0);
                     }
-                    console.log(node.content.sections.Cat.section);
+                    // console.log(node.content.sections.Cat.section);
                     // node.content.sections.Cat.section.handleCollection();
                     // });
                     break;

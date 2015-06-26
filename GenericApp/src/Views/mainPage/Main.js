@@ -40,7 +40,9 @@ function makePage() {
 }
 
 Main.prototype.onReceive = function onReceive(event, payload) {
-    if (event === 'click') {
+    console.log(payload.node);
+    if (event === 'click' && typeof payload.node === NavButton) {
+        console.log("this ran");
         var to = payload.node.getId();
         this.emit('changeSection', {
             from: this.currentSection,
