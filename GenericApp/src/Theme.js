@@ -5,7 +5,7 @@ var loadTheme = _.memoize(function() {
         headerHeight: headerHeight,
         footerHeight: footerHeight,
         contentBackgroundColor: 'White',
-        deleteButtonColor: '#000000',
+        deleteButtonColor: 'White',
         headerBackgroundColor: '#517fa4',
         backgoundColor1: 'rgb(50,56,77)',
         backgoundColor2: 'rgb(0,0,0)',

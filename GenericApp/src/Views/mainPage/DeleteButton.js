@@ -19,6 +19,7 @@ function DeleteButton(options) {
         content: 'X',
         properties: {
             backgroundColor: theme.deleteButtonColor,
+            opacity: 0.5,
             zIndex: 10
         }
     });
