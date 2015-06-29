@@ -11,7 +11,6 @@ function DragComp (node, option) {
             continue;
 		gestures[i] = new GestureHandler(childrenArray[i]);
     	gestures[i].on('drag', function drag(e) {
-            //console.log(e);
             switch(e.status) {
                 case 'move':
                     if(e.center.x > 0 && e.center.x < 2/3 * innerWidth){
@@ -28,9 +27,6 @@ function DragComp (node, option) {
                     else if(e.centerVelocity.x  < 0){
                         node.setPosition(0, 0, 0);
                     }
-                    // console.log(node.content.sections.Cat.section);
-                    // node.content.sections.Cat.section.handleCollection();
-                    // });
                     break;
             }
         });

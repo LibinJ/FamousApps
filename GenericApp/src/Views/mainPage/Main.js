@@ -38,6 +38,7 @@ function makePage() {
     this.content = new Content();
     this.addChild(this.content);
     var dragComp = new DragComp(this);
+    console.log("finish");
 }
 
 Main.prototype.onReceive = function onReceive(event, payload) {
@@ -49,6 +50,9 @@ Main.prototype.onReceive = function onReceive(event, payload) {
             to: to
         });
         this.currentSection = to;
+    }
+    if (event == 'click' && payload.node.type == 'HamburgerMenuButton') {
+        this.setPosition(2/3 * innerWidth, 0, 0);
     }
 };
 

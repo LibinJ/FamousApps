@@ -3,6 +3,7 @@ var DOMElement = famous.domRenderables.DOMElement;
 var Node = famous.core.Node;
 var Align = famous.components.Align;
 var AddButton = require('./AddButton');
+var HamburgerMenuButton = require('./HamburgerMenuButton');
 var theme = require('../../Theme');
 
 var w = innerWidth;
@@ -12,7 +13,7 @@ function Header(mount) {
     // Extend Node
     Node.call(this);
     makeEl.call(this);
-    addAddButton.call(this);
+    addButtons.call(this);
 }
 
 Header.prototype = Object.create(Node.prototype);
@@ -57,8 +58,9 @@ Header.prototype.changeSection = function changeSection (to) {
     }.bind(this));
 };
 
-function addAddButton(){ 
+function addButtons(){ 
     this.addChild(new AddButton());
+    this.addChild(new HamburgerMenuButton());
 }
 
 module.exports = Header;

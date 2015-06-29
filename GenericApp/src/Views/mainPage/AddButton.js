@@ -8,13 +8,13 @@ function AddButton(mount) {
     Node.call(this);
 
     this.setSizeMode('absolute', 'absolute')
-        .setAbsoluteSize(theme.AddButton.width, theme.AddButton.height)
-        .setPosition(innerWidth - innerWidth / 10, 0);
+            .setAbsoluteSize(theme.AddButton.width, theme.AddButton.height)
+            .setPosition(innerWidth-theme.AddButton.position*2, theme.AddButton.position);
+
 
     this.el = new DOMElement(this, {
-        classes: ['add-button'],
         tagName: 'div',
-        content: '+',
+        content: '<i class="fa fa-plus fa-2x button-color"></i>',
         properties: {
             backgroundColor: theme.headerBackgroundColor,
             zIndex: 10

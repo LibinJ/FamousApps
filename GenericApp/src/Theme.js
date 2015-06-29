@@ -29,8 +29,14 @@ var loadTheme = _.memoize(function() {
             height: innerWidth/20
         },
         AddButton:{
-            width: innerWidth/20,
-            height: innerWidth/20
+            width: innerWidth/10,
+            height: innerWidth/10,
+            position: innerWidth/20
+        },
+        HamburgerMenuButton:{
+            width: innerWidth/10,
+            height: innerWidth/10,
+            position: innerWidth/20
         }
     };
 });
