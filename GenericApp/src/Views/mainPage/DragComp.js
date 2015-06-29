@@ -6,7 +6,6 @@ function DragComp (node, option) {
 	this.node = node;
 	var childrenArray = node.getChildren();
 	var gestures = [];
-    return;
 	for(var i = 0; i < childrenArray.length; i++){ 
         if(childrenArray[i] == null)
             continue;

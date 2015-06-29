@@ -11,7 +11,6 @@ var h = innerHeight;
 function Header(mount) {
     // Extend Node
     Node.call(this);
-
     makeEl.call(this);
     addAddButton.call(this);
 }
@@ -51,6 +50,7 @@ Header.prototype.changeSection = function changeSection (to) {
         duration: 250,
     }, function(){
         this.titleElement.setContent(to);
+        this.title=to;
         titleAlign.set(0, 0, 0, {
             duration: 250,
         });
