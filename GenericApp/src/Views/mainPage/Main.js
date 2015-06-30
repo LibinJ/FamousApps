@@ -5,6 +5,7 @@ var Content = require('./Content');
 var Footer = require('./Footer');
 var FooterButton = require('./FooterButton');
 var DragComp = require('./DragComp');
+var Align = famous.components.Align;
 var NavButton = require('./NavButton');
 
 function Main(mount) {
@@ -16,7 +17,9 @@ function Main(mount) {
     this.setSizeMode('absolute', 'absolute')
         .setAbsoluteSize(innerWidth, innerHeight);
 
+    this.alignComp = new Align(this);
     makePage.call(this);
+    this.hbmCount = 0;
 }
 
 // Extend the prototype
@@ -51,8 +54,27 @@ Main.prototype.onReceive = function onReceive(event, payload) {
         });
         this.currentSection = to;
     }
+    console.log(event);
     if (event == 'click' && payload.node.type == 'HamburgerMenuButton') {
-        this.setPosition(2/3 * innerWidth, 0, 0);
+        this.hbmCount++;
+        if(this.hbmCount%2 != 0){
+            //this.setPosition(2/3 * innerWidth, 0, 0);
+            this.alignComp.set(2/3, 0, 0, {
+                duration: 600,
+                curve: 'outBounce'
+            })
+        }
+        else{
+            this.alignComp.set(0, 0, 0, {
+                duration: 600,
+                curve: 'outBounce'
+            })
+        }
+    // this.alignComp.set(2/3, 1, 0, {
+    //     duration: 600,
+    //     curve: 'outBounce'
+    // })
+    //    // this.setPosition(2/3 * innerWidth, 0, 0);
     }
 };
 
